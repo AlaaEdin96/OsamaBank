@@ -37,7 +37,7 @@ class FinancesRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('note'),
             ])
             ->filters([
-                //
+                //f
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make(),

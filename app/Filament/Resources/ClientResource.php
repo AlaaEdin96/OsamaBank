@@ -29,9 +29,9 @@ class ClientResource extends Resource
     {
         return $form
         ->schema([
-            TextInput::make('name'),
-            TextInput::make('phone'),
-            TextInput::make('note'),
+            TextInput::make('name')->required()->label('الاسم'),
+            TextInput::make('phone')->required()->label('الهاتف'),
+            TextInput::make('note')->label('ملاحظة'),
         ]);
     }
 
