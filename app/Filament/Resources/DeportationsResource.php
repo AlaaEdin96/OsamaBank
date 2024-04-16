@@ -40,7 +40,7 @@ class DeportationsResource extends Resource
                 Select::make('deportations_to')->required()->label('ترحيل الي')
                 ->options(User::all()->pluck('name', 'id'))
                 ->searchable(), 
-                 Select::make('bank_card_to')->required()->label('رقم البطاقة')
+                 Select::make('bank_card_id')->required()->label('رقم البطاقة')
                 ->options(BankCard::all()->pluck('numder', 'id'))
                 ->searchable(),
                  
@@ -60,7 +60,7 @@ class DeportationsResource extends Resource
             TextColumn::make('deportationsTo.name'),
              TextColumn::make('confirmFrom.name'),
              TextColumn::make('note'),  
-            TextColumn::make('bankCard.numder')->searchable(),  
+            TextColumn::make('bankCard.numder')->searchable()->label('رقم البطاقة'),  
             TextColumn::make('user.name'),  
            
             IconColumn::make('confirmation')
