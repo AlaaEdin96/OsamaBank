@@ -44,9 +44,9 @@ class DeportationsResource extends Resource
                 ->options(BankCard::all()->pluck('numder', 'id'))
                 ->searchable(),
                  
-                TextInput::make('note')->required()->name('ملاحظة')->columnSpan(2),
+                TextInput::make('note')->required()->name('ملاحظة'),
 
-            ])->columns(4),
+            ])->columns(3),
           
         ]);
 
