@@ -48,7 +48,7 @@ class BankAccountResource extends Resource
                 ->searchable(),
                 TextInput::make('note')->name('ملاحظة')->columnSpan(2),
 
-            ])->columns(4),
+            ]),
           
         ]);
 
