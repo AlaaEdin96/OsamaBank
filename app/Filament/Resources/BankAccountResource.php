@@ -46,9 +46,9 @@ class BankAccountResource extends Resource
                  Select::make('client_id')->required()->label('العميل')
                 ->options(Client::all()->pluck('name', 'id'))
                 ->searchable(),
-                TextInput::make('note')->name('ملاحظة')->columnSpan(2),
+                TextInput::make('note')->name('ملاحظة'),
 
-            ]),
+            ])->columns(4),
           
         ]);
 
