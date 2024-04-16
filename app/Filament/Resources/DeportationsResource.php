@@ -8,9 +8,12 @@ use App\Models\BankCard;
 use App\Models\Deportations;
 use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\Wizard\Step;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -83,7 +86,50 @@ class DeportationsResource extends Resource
                            'confirmation'=>true,
                            'confirm_from'=>Auth::id()
                 ])
-                )->disabled(fn (Deportations $st)=> $st->confirmation) 
+                )->disabled(fn (Deportations $st)=> $st->confirmation) ,
+
+                Tables\Actions\Action::make('modal')
+                //->action(fn ( Deportations $st) =>null)
+                ->form([
+                    Select::make('authorId')
+                        ->label('Author')
+                        ->options(User::query()->pluck('name', 'id'))
+                        ->required(),
+                ])
+                ->modalContent(
+
+                    //fn ($record) => view('welcome', ['record' => $record])
+                ),
+                /////////////////////////////
+                Tables\Actions\Action::make('create')
+    ->steps([
+        Step::make('Name')
+            ->description('Give the category a unique name')
+            ->schema([
+                TextInput::make('name')
+                    ->required()
+                    ->live()
+                    ->afterStateUpdated(fn ($state, callable $set) => $set('slug', str()->slug($state))),
+                TextInput::make('slug')
+                    ->disabled()
+                    ->required()
+                   // ->unique(Category::class, 'slug'),
+            ])
+            ->columns(2),
+        Step::make('Description')
+            ->description('Add some extra details')
+            ->schema([
+                MarkdownEditor::make('description'),
+            ]),
+        Step::make('Visibility')
+            ->description('Control who can view it')
+            ->schema([
+                Toggle::make('is_visible')
+                    ->label('Visible to customers.')
+                    ->default(true),
+            ]),
+    ])
+
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -5,10 +5,12 @@ namespace App\Models;
 use App\Trait\CretedByUserTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class BankAccount extends Model
+class BankAccount extends Model implements HasMedia
 {
-    use HasFactory,CretedByUserTrait;
+    use HasFactory,CretedByUserTrait,InteractsWithMedia;
     protected  $table = 'bank_account';
 
     protected $fillable = [
