@@ -20,17 +20,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/bb', function () {
-    $status=Status::all();
-    foreach ($status as $value) {
+// Route::get('/bb', function () {
+//     $status=Status::all();
+//     foreach ($status as $value) {
          
-        BankAccount::find($value->bank_account_id)->update([
-            'statuses'=>$value->statuses,
-        ]);
+//         BankAccount::find($value->bank_account_id)->update([
+//             'statuses'=>$value->statuses,
+//         ]);
 
-    }
+//     }
 
-});
+// });
 
 
 Route::get('/test512512512', function () {
