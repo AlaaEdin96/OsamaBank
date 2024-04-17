@@ -28,12 +28,13 @@ class StatusesRelationManager extends RelationManager
             // ->searchable(),
             Select::make('statuses')->required()->label('الحالة')
             ->options([
-                'مطابق' => 'مطابق',
-                'غير مطابق' => 'غير مطابق',
                 'تم التسجيل' => 'تم التسجيل',
-                'تم الايداع' => 'تم الايداع',
-                'تم الحجز' => 'تم الحجز',
+                'مطابق' => 'مطابق',
+                'توكيل' => 'توكيل',
+                'غير مطابق' => 'غر مطابق',
+                'قيد التنفيد' => 'قيد التنفيد',
                 'تم التنفيد' => 'تم التنفيد',
+                
             ])->columnSpanFull()
         ]);
 }
@@ -45,13 +46,13 @@ class StatusesRelationManager extends RelationManager
             ->recordTitleAttribute('name')
             ->columns([
                  TextColumn::make('user.name'),
-                TextColumn::make('statuses')->badge()
-                ->color(fn (string $state): string => match ($state) {
-                    'draft' => 'gray',
-                    'reviewing' => 'warning',
-                    'published' => 'success',
-                    'rejected' => 'danger',
-                }),
+                TextColumn::make('statuses')->badge(),
+                // ->color(fn (string $state): string => match ($state) {
+                //     'draft' => 'gray',
+                //     'reviewing' => 'warning',
+                //     'published' => 'success',
+                //     'rejected' => 'danger',
+                // }),
             ])
             ->filters([
                 
