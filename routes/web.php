@@ -20,18 +20,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/bb', function () {
-    $status=Status::all();
-    foreach ($status as $value) {
+// Route::get('/bb', function () {
+//     $status=Status::all();
+//     foreach ($status as $value) {
          
-        BankAccount::where('statuses',null)->first()
-        ->update([
-            'statuses'=>'تم التسجيل',
-        ]);
+//         BankAccount::where('statuses',null)->first()
+//         ->update([
+//             'statuses'=>'تم التسجيل',
+//         ]);
 
-    }
+//     }
 
-});
+// });
 
 
 Route::get('/test512512512', function () {
