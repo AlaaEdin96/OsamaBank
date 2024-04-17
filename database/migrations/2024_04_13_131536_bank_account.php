@@ -21,6 +21,11 @@ return new class extends Migration
             $table->foreignId("bank_id")->constrained("bank")->cascadeOnDelete();
             $table->foreignId("client_id")->constrained("client")->cascadeOnDelete();
             $table->foreignId("creted_by_user_id")->constrained("users")->cascadeOnDelete();
+            $table->string('email')->nullable();
+            $table->string('account_number')->nullable();
+            $table->string('iban_number')->nullable();
+            $table->string('phone_contact')->nullable();
+            $table->date('expires')->nullable();
             $table->timestamps();
         });
     }

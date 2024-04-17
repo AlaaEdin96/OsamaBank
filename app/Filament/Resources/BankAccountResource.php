@@ -12,9 +12,11 @@ use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Split;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -43,6 +45,8 @@ class BankAccountResource extends Resource
 ->schema([
     Group::make()->schema([
         Section::make('بيانات الحساب المصرفي')->schema([
+            TextInput::make('id')->label('#ID')
+            ->readonly()->columnSpanFull()     ,
             TextInput::make('name')->required()->name('الاسم'),
             TextInput::make('phone')->required()->name('الهاتف'),
             TextInput::make('numder_id')->required()->name('الرقم_الوطنى'),
