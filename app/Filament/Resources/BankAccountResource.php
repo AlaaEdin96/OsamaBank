@@ -67,7 +67,6 @@ Section::make('ملفات')->schema([
     SpatieMediaLibraryFileUpload::make('attachment')
     ->image()
     ->multiple()
-    ->maxSize(350)
     ->collection('avatars')
     ->optimize('webp')
     ->imageEditor()
