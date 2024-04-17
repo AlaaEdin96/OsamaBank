@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\BankAccount;
+use App\Models\Status;
 use App\Models\Task;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/bb', function () {
+    $status=Status::all();
+    foreach ($status as $value) {
+         
+        BankAccount::find($value->bank_account_id)->update([
+            'statuses'=>$value->statuses,
+        ]);
+
+    }
+
+});
+
 
 Route::get('/test512512512', function () {
          $Account=BankAccount::where('statuses','!=','تم التنفيد')->get();
