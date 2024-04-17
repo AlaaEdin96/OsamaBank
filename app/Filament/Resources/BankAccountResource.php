@@ -46,18 +46,23 @@ class BankAccountResource extends Resource
             TextInput::make('name')->required()->name('الاسم'),
             TextInput::make('phone')->required()->name('الهاتف'),
             TextInput::make('numder_id')->required()->name('الرقم_الوطنى'),
-            TextInput::make('id_card')->required()->name('رقم_الحساب'),
-            Select::make('bank_id')->required()->label('البنك')
-            ->options(Bank::all()->pluck('name', 'id'))
-            ->searchable(),
-            Select::make('client_id')->required()->label('العميل')
-           ->options(Client::all()->pluck('name', 'id'))
+            TextInput::make('id_card')->required()->name('رقم_البطاقة'),           
+           TextInput::make('account_number')->name('رقم الحساب'),
+           TextInput::make('iban_number')->name('الايبان'),
+           TextInput::make('expires')->name('انتهاء الصلاحية'),
+           Select::make('bank_id')->required()->label('البنك')
+           ->options(Bank::all()->pluck('name', 'id'))
            ->searchable(),
-           TextInput::make('note')->name('ملاحظة'),
-
+           Select::make('client_id')->required()->label('العميل')
+          ->options(Client::all()->pluck('name', 'id'))
+          ->searchable(),
             ])->columns(2)
         ->description('يرجى كتابة كل البيانات المطلوبة لأنشاء حساب مصرفي مع تحميل صورة الرقم الوطنى وصورة الباسبور') ,  
- 
+        Section::make('تواصل')->schema([
+            TextInput::make('email')->name('الايميل'),
+            TextInput::make('phone_contact')->name('رقم التواصل'),
+
+        ])
 
 ]),
 Group::make([

@@ -22,9 +22,14 @@ class BankAccount extends Model implements HasMedia
         'bank_id',
         'client_id',
         'creted_by_user_id',
+        'email',
+        'account_number',
+        'iban_number',
+        'expires',
+        'phone_contact'
         
      ];
-     
+   
      public function cards()
      {
          return $this->hasMany(BankCard::class,'bank_account_id');

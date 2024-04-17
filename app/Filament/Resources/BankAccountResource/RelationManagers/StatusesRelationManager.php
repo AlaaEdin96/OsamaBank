@@ -28,9 +28,12 @@ class StatusesRelationManager extends RelationManager
             // ->searchable(),
             Select::make('statuses')->required()->label('الحالة')
             ->options([
-                'draft' => 'Draft',
-                'reviewing' => 'Reviewing',
-                'published' => 'Published',
+                'مطابق' => 'مطابق',
+                'غير مطابق' => 'غير مطابق',
+                'تم التسجيل' => 'تم التسجيل',
+                'تم الايداع' => 'تم الايداع',
+                'تم الحجز' => 'تم الحجز',
+                'تم التنفيد' => 'تم التنفيد',
             ])->columnSpanFull()
         ]);
 }
