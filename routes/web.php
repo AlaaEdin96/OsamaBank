@@ -49,7 +49,6 @@ Route::get('/test512512512', function () {
                
                 Task::create([
                     'statuses_old'=>$index->statuses,
-                    'confirmation_by_user_id'=>1,
                     'bank_account_id'=>$index->id,
                     'confirmation'=>0
                 ]);
