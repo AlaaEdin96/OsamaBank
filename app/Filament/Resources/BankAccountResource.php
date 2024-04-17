@@ -73,7 +73,7 @@ Section::make('ملفات')->schema([
     ->imageEditor()
     ->reorderable()
    // ->deletable(false)
-   ->maxSize(680)
+   //->maxSize(680)
     ->openable()
     ->uploadingMessage('Uploading attachment...')
     ->maxFiles(5)
