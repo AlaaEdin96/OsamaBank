@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\BankAccount;
+use App\Models\Task;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,30 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/test512512512', function () {
+         $Account=BankAccount::where('statuses','!=','تم التنفيد')->get();
+        
+       // dd($Account[0]);
+         if ($Account->count()>0) {
+           
+            foreach ($Account as $index) {
+               $a= Task::where('bank_account_id',$index->id)->where('confirmation',0)->first();
+           
+             if (!is_null($a)) {
+                return;
+             }
+               
+                Task::create([
+                    'statuses_old'=>$index->statuses,
+                    'confirmation_by_user_id'=>1,
+                    'bank_account_id'=>$index->id,
+                    'confirmation'=>0
+                ]);
+            }
+        } else {
+            return "noting";
+        }
+        
+        
+ });

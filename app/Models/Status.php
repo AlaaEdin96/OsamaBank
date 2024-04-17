@@ -14,8 +14,8 @@ class Status extends Model
     protected $fillable = [
         'statuses',
         'creted_by_user_id',
-        'bank_account_id'
-     ];
+        'bank_account_id',
+      ];
      
      public function bankAccount()
      {

@@ -12,6 +12,10 @@ class BankAccount extends Model implements HasMedia
 {
     use HasFactory,CretedByUserTrait,InteractsWithMedia;
     protected  $table = 'bank_account';
+    
+    protected $attributes = [
+        'statuses' => 'تم التسجيل',
+     ];
 
     protected $fillable = [
         'name',
@@ -27,12 +31,17 @@ class BankAccount extends Model implements HasMedia
         'iban_number',
         'expires',
         'phone_contact'
-        
+        ,'statuses'
      ];
    
      public function cards()
      {
          return $this->hasMany(BankCard::class,'bank_account_id');
+     }
+
+     public function tasks()
+     {
+         return $this->hasMany(Task::class,'bank_account_id');
      }
 
      public function statuses()

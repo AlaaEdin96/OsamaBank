@@ -76,62 +76,21 @@ class DeportationsResource extends Resource
  })
 
 ])->bulkActions([])
+
             ->filters([
-                //
             ])
-            ->actions([
-                Tables\Actions\Action::make('Confirm')
-                ->action(fn ( Deportations $st) =>
+            
+            ->actions(
+                [
+                    Tables\Actions\Action::make('Confirm')
+                    ->action(fn ( Deportations $st) =>
                  $st->update([
                            'confirmation'=>true,
                            'confirm_from'=>Auth::id()
                 ])
-                )->disabled(fn (Deportations $st)=> $st->confirmation) ,
-
-                Tables\Actions\Action::make('modal')
-                //->action(fn ( Deportations $st) =>null)
-                ->form([
-                    Select::make('authorId')
-                        ->label('Author')
-                        ->options(User::query()->pluck('name', 'id'))
-                        ->required(),
-                ])
-                ->modalContent(
-
-                    //fn ($record) => view('welcome', ['record' => $record])
-                ),
-                /////////////////////////////
-                Tables\Actions\Action::make('create')
-    ->steps([
-        Step::make('Name')
-            ->description('Give the category a unique name')
-            ->schema([
-                TextInput::make('name')
-                    ->required()
-                    ->live()
-                    ->afterStateUpdated(fn ($state, callable $set) => $set('slug', str()->slug($state))),
-                TextInput::make('slug')
-                    ->disabled()
-                    ->required()
-                   // ->unique(Category::class, 'slug'),
-            ])
-            ->columns(2),
-        Step::make('Description')
-            ->description('Add some extra details')
-            ->schema([
-                MarkdownEditor::make('description'),
-            ]),
-        Step::make('Visibility')
-            ->description('Control who can view it')
-            ->schema([
-                Toggle::make('is_visible')
-                    ->label('Visible to customers.')
-                    ->default(true),
-            ]),
-    ])
-
-            ])
-            ->bulkActions([
+                )->disabled(fn (Deportations $st)=> $st->confirmation) ,             
+               
+            ])->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),

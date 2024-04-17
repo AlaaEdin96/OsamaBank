@@ -106,6 +106,8 @@ Section::make('ملفات')->schema([
         return $table
             ->columns([
                 TextColumn::make('name')->searchable(),
+                TextColumn::make('statuses')->label('الحالة الجديدة')->badge(),
+
                 SpatieMediaLibraryImageColumn::make('avatar')->collection('avatars')
 
             ])
