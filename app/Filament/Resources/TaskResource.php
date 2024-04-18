@@ -98,6 +98,8 @@ class TaskResource extends Resource
                  'غير مطابق' => 'غر مطابق',
                  'قيد التنفيد' => 'قيد التنفيد',
                  'تم التنفيد' => 'تم التنفيد',
+                 'الرقم الوطني غير مربوط' => 'الرقم الوطني غير مربوط',
+
                  
              ])])->action(function( Task $st,array $data){
                 $st->update([
