@@ -105,6 +105,7 @@ Section::make('ملفات')->schema([
     {
         return $table
             ->columns([
+                TextColumn::make('id')->label('#IDC'),
                 TextColumn::make('name')->searchable(),
                 TextColumn::make('statuses')->label('الحالة الجديدة')->badge(),
 
