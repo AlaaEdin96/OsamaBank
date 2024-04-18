@@ -99,6 +99,7 @@ class TaskResource extends Resource
                  'قيد التنفيد' => 'قيد التنفيد',
                  'تم التنفيد' => 'تم التنفيد',
                  'الرقم الوطني غير مربوط' => 'الرقم الوطني غير مربوط',
+                 'خطاء' => 'خطاء',
 
                  
              ])])->action(function( Task $st,array $data){
