@@ -3,20 +3,15 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\BankResource\Pages;
-use App\Filament\Resources\BankResource\RelationManagers;
-use App\Models\Bank;
-use Filament\Forms;
-use Filament\Forms\Components\RichEditor;
-use Filament\Forms\Components\TextInput;
+ use App\Models\Bank;
+  use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-
+ 
 class BankResource extends Resource
 {
     protected static ?string $model = Bank::class;
@@ -26,7 +21,8 @@ class BankResource extends Resource
     protected static ?string $navigationGroup = 'Admin';
     protected static ?int $navigationSort = 1;
 
-    
+    protected static ?string $pluralModelLabel = "المصارف";
+
     public static function form(Form $form): Form
     {
         return $form
@@ -44,7 +40,7 @@ class BankResource extends Resource
                 TextColumn::make('note'),
                 IconColumn::make('id')
                     ->boolean(),
-            ])
+            ])->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])
@@ -69,8 +65,8 @@ class BankResource extends Resource
     {
         return [
             'index' => Pages\ListBanks::route('/'),
-            'create' => Pages\CreateBank::route('/create'),
-            'edit' => Pages\EditBank::route('/{record}/edit'),
+          //  'create' => Pages\CreateBank::route('/create'),
+            //'edit' => Pages\EditBank::route('/{record}/edit'),
         ];
     }
 }

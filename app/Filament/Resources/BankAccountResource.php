@@ -35,6 +35,7 @@ use Joshembling\ImageOptimizer\Components\SpatieMediaLibraryFileUpload;
 class BankAccountResource extends Resource
 {
     protected static ?string $model = BankAccount::class;
+    protected static ?string $pluralModelLabel = "الحسابات المصرفية";
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -46,7 +47,7 @@ class BankAccountResource extends Resource
         return $form
 ->schema([
     Group::make()->schema([
-        Section::make('بيانات الحساب المصرفي')
+        Section::make('بيانات شخصية ')
         ->headerActions([
             Action::make('طباعـــة')
             ->url( 
@@ -59,27 +60,32 @@ class BankAccountResource extends Resource
         ->schema([
             TextInput::make('id')->label('#ID')
             ->readonly()->columnSpanFull()     ,
-            TextInput::make('name')->required()->name('الاسم'),
+            TextInput::make('name')->required()->name('الاسم')->columnSpanFull(),
             TextInput::make('phone')->required()->name('الهاتف'),
             TextInput::make('numder_id')->required()->name('الرقم_الوطنى'),
             TextInput::make('id_card')->required()->name('رقم_البطاقة'),           
-           TextInput::make('account_number')->name('رقم الحساب'),
-           TextInput::make('iban_number')->name('الايبان'),
-           TextInput::make('expires')->name('انتهاء الصلاحية'),
-           Select::make('bank_id')->required()->label('البنك')
-           ->options(Bank::all()->pluck('name', 'id'))
-           ->searchable(),
+            
            Select::make('client_id')->required()->label('العميل')
           ->options(Client::all()->pluck('name', 'id'))
           ->searchable(),
-            ])->columns(2)
-        ->description('يرجى كتابة كل البيانات المطلوبة لأنشاء حساب مصرفي مع تحميل صورة الرقم الوطنى وصورة الباسبور') ,  
-        Section::make('تواصل')->schema([
+            ])->columns(2),
+         
+         Section::make('بيانات البنك')->description('في حال لايوجد لديه حساب يرجى ترك المدخلات فارغة')
+         ->schema([
+            TextInput::make('account_number')->name('رقم_الحساب'),
+            TextInput::make('iban_number')->name('الايبان'),
+
+            Select::make('bank_id')->label('البنك')
+            ->options(Bank::all()->pluck('name', 'id'))
+            ->searchable(),
+ 
+         ]),
+
+         Section::make('بيانات التواصل')->schema([
             TextInput::make('email')->name('الايميل'),
-            TextInput::make('phone_contact')->name('رقم التواصل'),
+            TextInput::make('phone_contact')->name('رقم_التواصل'),
 
-        ])
-
+         ]),
 ]),
 Group::make([
     
@@ -123,7 +129,7 @@ Section::make('ملفات')->schema([
 
                 SpatieMediaLibraryImageColumn::make('avatar')->collection('avatars')
 
-            ])
+            ])->defaultSort('created_at', 'desc')
             ->filters([
                 Filter::make('is_featured')
                 ->label('Featured'),

@@ -157,7 +157,7 @@ body{
 
 				<tr class="item">
 
-					<td>{{$date["phone" ]}}</td>
+					<td>{{$date["phone_contact" ]}}</td>
 					<td>هاتف التواصل</td>
 
 				</tr>

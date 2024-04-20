@@ -3,26 +3,19 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\DeportationsResource\Pages;
-use App\Filament\Resources\DeportationsResource\RelationManagers;
-use App\Models\BankCard;
+ use App\Models\BankCard;
 use App\Models\Deportations;
 use App\Models\User;
-use Filament\Forms;
-use Filament\Forms\Components\MarkdownEditor;
-use Filament\Forms\Components\Section;
+  use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Toggle;
-use Filament\Forms\Components\Wizard\Step;
-use Filament\Forms\Form;
+ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Illuminate\Support\Facades\Auth;
+ use Illuminate\Support\Facades\Auth;
 
 class DeportationsResource extends Resource
 {
@@ -75,7 +68,7 @@ class DeportationsResource extends Resource
     '1' => 'success',
  })
 
-])->bulkActions([])
+])->defaultSort('created_at', 'desc')
 
             ->filters([
             ])

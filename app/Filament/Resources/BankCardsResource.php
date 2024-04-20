@@ -30,6 +30,7 @@ class BankCardsResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $navigationGroup = 'Work';
+    protected static ?string $pluralModelLabel = "البطاقات البنكية";
 
   
     public static function form(Form $form): Form
@@ -87,7 +88,7 @@ class BankCardsResource extends Resource
                 TextColumn::make('bankAccount.client.name')->label('العميل'),
                 TextColumn::make('note')->label('ملاحظة'),
 
-            ])
+            ])->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])
@@ -113,8 +114,8 @@ class BankCardsResource extends Resource
     {
         return [
             'index' => Pages\ListBankCards::route('/'),
-            'create' => Pages\CreateBankCards::route('/create'),
-            'edit' => Pages\EditBankCards::route('/{record}/edit'),
+         //   'create' => Pages\CreateBankCards::route('/create'),
+          //  'edit' => Pages\EditBankCards::route('/{record}/edit'),
         ];
     }
 }

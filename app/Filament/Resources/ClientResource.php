@@ -23,6 +23,7 @@ class ClientResource extends Resource
 
 
     protected static ?string $navigationGroup = 'Admin';
+    protected static ?string $pluralModelLabel = "الزبائن";
 
 
     public static function form(Form $form): Form
@@ -42,7 +43,7 @@ class ClientResource extends Resource
                 TextColumn::make('name'),
                 TextColumn::make('phone'),
                 TextColumn::make('note'),
-            ])
+            ])->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])
@@ -67,8 +68,8 @@ class ClientResource extends Resource
     {
         return [
             'index' => Pages\ListClients::route('/'),
-            'create' => Pages\CreateClient::route('/create'),
-            'edit' => Pages\EditClient::route('/{record}/edit'),
+            //'create' => Pages\CreateClient::route('/create'),
+           // 'edit' => Pages\EditClient::route('/{record}/edit'),
         ];
     }
 }

@@ -14,14 +14,11 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Actions\CreateAction;
-use Filament\Tables\Columns\IconColumn;
+ use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Illuminate\Support\Facades\Auth;
+ use Illuminate\Support\Facades\Auth;
 
 class TaskResource extends Resource
 {
@@ -30,6 +27,7 @@ class TaskResource extends Resource
    // protected static ?string $label = 't';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $pluralModelLabel = "المهام اليوميه";
 
     public static function form(Form $form): Form
     {
