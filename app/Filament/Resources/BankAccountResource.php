@@ -8,6 +8,7 @@ use App\Models\Bank;
 use App\Models\BankAccount;
 use App\Models\Client;
 use Filament\Forms;
+use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
@@ -19,6 +20,7 @@ use Filament\Forms\Components\Split;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
@@ -44,7 +46,17 @@ class BankAccountResource extends Resource
         return $form
 ->schema([
     Group::make()->schema([
-        Section::make('بيانات الحساب المصرفي')->schema([
+        Section::make('بيانات الحساب المصرفي')
+        ->headerActions([
+            Action::make('طباعـــة')
+            ->url( 
+ 
+         fn ( $state): string => route('pdf',$state )
+            )
+            ->openUrlInNewTab()
+        ])
+    
+        ->schema([
             TextInput::make('id')->label('#ID')
             ->readonly()->columnSpanFull()     ,
             TextInput::make('name')->required()->name('الاسم'),
@@ -132,7 +144,7 @@ Section::make('ملفات')->schema([
     {
         return [
             RelationManagers\CardsRelationManager::class,
-            RelationManagers\StatusesRelationManager::class,
+           // RelationManagers\StatusesRelationManager::class,
             RelationManagers\FinancesRelationManager::class,
 
 

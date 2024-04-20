@@ -1,11 +1,10 @@
 <?php
 
 use App\Models\BankAccount;
-use App\Models\Status;
 use App\Models\Task;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
-/*
+  /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -59,3 +58,10 @@ Route::get('/test512512512', function () {
         
         
  });
+  Route::get('/invo/{id}', function ($id,Request $request) {
+     $pdf = app("laravel-mpdf")->loadView('pdf',['id'=>$id,'date'=>$request->input(),]);
+    return $pdf->stream('document.pdf');
+
+    return view('pdf',);
+})->name('pdf');
+
