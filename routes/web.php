@@ -58,7 +58,7 @@ Route::get('/test512512512', function () {
         
         
  });
-  Route::get('/invo/{id}', function ($id,Request $request) {
+  Route::get('/invo/{id?}', function ($id,Request $request) {
      $pdf = app("laravel-mpdf")->loadView('pdf',['id'=>$id,'date'=>$request->input(),]);
     return $pdf->stream('document.pdf');
 
