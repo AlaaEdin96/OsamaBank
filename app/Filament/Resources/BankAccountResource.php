@@ -10,6 +10,7 @@ use App\Models\Client;
 use Filament\Forms;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Builder\Block;
+use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Group;
@@ -26,6 +27,7 @@ use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\TextInputColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -36,7 +38,7 @@ class BankAccountResource extends Resource
 {
     protected static ?string $model = BankAccount::class;
     protected static ?string $pluralModelLabel = "الحسابات المصرفية";
-
+ 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $navigationGroup = 'Work';
@@ -77,7 +79,7 @@ class BankAccountResource extends Resource
 
             Select::make('bank_id')->label('البنك')
             ->options(Bank::all()->pluck('name', 'id'))
-            ->searchable(),
+             ->searchable(),
  
          ]),
 
@@ -105,7 +107,10 @@ Section::make('ملفات')->schema([
     ->maxFiles(5)
     ->resize(50),
 ]),
+Section::make('ملاحظات')->schema([
+    Textarea::make('notes'),
 
+ ]),
 
 ])
 
@@ -124,10 +129,10 @@ Section::make('ملفات')->schema([
         return $table
             ->columns([
                 TextColumn::make('id')->label('#IDC'),
-                TextColumn::make('name')->searchable(),
+                TextColumn::make('name')->searchable()->label('الاسم'),
                 TextColumn::make('statuses')->label('الحالة الجديدة')->badge(),
 
-                SpatieMediaLibraryImageColumn::make('avatar')->collection('avatars')
+                SpatieMediaLibraryImageColumn::make('avatar')->collection('avatars')->label('الصور')
 
             ])->defaultSort('created_at', 'desc')
             ->filters([
@@ -141,7 +146,7 @@ Section::make('ملفات')->schema([
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -152,6 +157,7 @@ Section::make('ملفات')->schema([
             RelationManagers\CardsRelationManager::class,
            // RelationManagers\StatusesRelationManager::class,
             RelationManagers\FinancesRelationManager::class,
+            RelationManagers\NotesRelationManager::class,
 
 
         ];

@@ -10,10 +10,11 @@ class ListBankAccounts extends ListRecords
 {
     protected static string $resource = BankAccountResource::class;
 
+ 
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()->label("انشاء جديد"),
         ];
     }
 }

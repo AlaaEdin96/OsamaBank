@@ -16,6 +16,8 @@ class CardsRelationManager extends RelationManager
 {
     protected static string $relationship = 'cards';
 
+    protected static ?string $title = 'البطاقات';
+
     public function form(Form $form): Form
     {
         return $form

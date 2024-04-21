@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\BankAccountResource\RelationManagers\NotesRelationManager;
 use App\Filament\Resources\BankCardsResource\Pages;
 use App\Filament\Resources\BankCardsResource\RelationManagers;
 use App\Models\BankAccount;
@@ -106,6 +107,7 @@ class BankCardsResource extends Resource
     {
         return [
             RelationManagers\DeportationsRelationManager::class,
+            NotesRelationManager::class,
 
         ];
     }
@@ -115,7 +117,7 @@ class BankCardsResource extends Resource
         return [
             'index' => Pages\ListBankCards::route('/'),
          //   'create' => Pages\CreateBankCards::route('/create'),
-          //  'edit' => Pages\EditBankCards::route('/{record}/edit'),
+            'edit' => Pages\EditBankCards::route('/{record}/edit'),
         ];
     }
 }

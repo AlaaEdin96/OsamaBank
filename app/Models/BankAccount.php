@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Trait\CretedByUserTrait;
+use App\Trait\HasNotes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -11,6 +12,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class BankAccount extends Model implements HasMedia
 {
     use HasFactory,CretedByUserTrait,InteractsWithMedia;
+    use HasNotes;
     protected  $table = 'bank_account';
     
     protected $attributes = [

@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use App\Trait\CretedByUserTrait;
+use App\Trait\HasNotes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class BankCard extends Model
 {
     use HasFactory,CretedByUserTrait;
+    use HasNotes;
     protected  $table = 'bank_card';
 
     protected $fillable = [
