@@ -2,30 +2,36 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\DeportationsResource\Pages;
- use App\Models\BankCard;
-use App\Models\Deportations;
+use App\Filament\Resources\DeportationAccountsResource\Pages;
+use App\Filament\Resources\DeportationAccountsResource\RelationManagers;
+use App\Models\BankAccount;
+use App\Models\BankCard;
+use App\Models\DeportationAccount;
+use App\Models\DeportationAccounts;
 use App\Models\User;
-  use Filament\Forms\Components\Section;
+use Filament\Forms;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
- use Filament\Forms\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
- use Illuminate\Support\Facades\Auth;
+ use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
-class DeportationsResource extends Resource
+class DeportationAccountsResource extends Resource
 {
-    protected static ?string $model = Deportations::class;
+    protected static ?string $model = DeportationAccount::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
+ 
     protected static ?string $navigationGroup = 'ترحيلات';
 
-    protected static ?string $pluralModelLabel = "بطاقات";
+    protected static ?string $pluralModelLabel = "حسابات";
+
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
@@ -37,18 +43,15 @@ class DeportationsResource extends Resource
                 Select::make('deportations_to')->required()->label('ترحيل الي')
                 ->options(User::all()->pluck('name', 'id'))
                 ->searchable(), 
-                 Select::make('bank_card_id')->required()->label('رقم البطاقة')
-                ->options(BankCard::all()->pluck('numder', 'id'))
+                 Select::make('bank_account_id')->required()->label('رقم البطاقة')
+                ->options(BankAccount::all()->pluck('name', 'id'))
                 ->searchable(),
-                TextInput::make('password')->required()->name('كلمة السر'),
-
+                 
                 TextInput::make('note')->required()->name('ملاحظة'),
 
             ])->columns(3),
           
         ]);
-
-        
     }
 
     public static function table(Table $table): Table
@@ -58,11 +61,10 @@ class DeportationsResource extends Resource
             TextColumn::make('user.name')->label('المرسل'),  
             TextColumn::make('deportationsTo.name')->label('المستقبل'),
             TextColumn::make('confirmFrom.name')->label('نأكيد من'),
-            TextColumn::make('bankCard.numder')->searchable()->label('رقم البطاقة'),  
-            TextColumn::make('password'),             
+            TextColumn::make('bankAccount.name')->searchable()->label('الحساب'),  
             TextColumn::make('note')->label('الوصف'),             
-            IconColumn::make('confirmation')->label('تم')
-            ->icon(fn (string $state): string => match ($state) {
+            IconColumn::make('confirmation')
+->icon(fn (string $state): string => match ($state) {
     '1' => 'heroicon-o-check-badge',
     '0' => 'heroicon-o-clock',
 })->color(fn (string $state): string => match ($state) {
@@ -71,22 +73,21 @@ class DeportationsResource extends Resource
  })
 
 ])->defaultSort('created_at', 'desc')
-
             ->filters([
+                //
             ])
-            
-            ->actions(
-                [
-                    Tables\Actions\Action::make('Confirm')->label('تأكيد')
+            ->actions([
+              //  Tables\Actions\EditAction::make(),
+              Tables\Actions\Action::make('Confirm')->label('تأكيد')
                     ->requiresConfirmation()
-                    ->action(fn ( Deportations $st) =>
+                    ->action(fn ( DeportationAccount $st) =>
                  $st->update([
                            'confirmation'=>true,
                            'confirm_from'=>Auth::id()
                 ])
-                )->disabled(fn (Deportations $st)=> $st->confirmation) ,             
-               
-            ])->bulkActions([
+                )->disabled(fn (DeportationAccount $st)=> $st->confirmation) , 
+            ])
+            ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
@@ -103,9 +104,9 @@ class DeportationsResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListDeportations::route('/'),
-            'create' => Pages\CreateDeportations::route('/create'),
-          //  'edit' => Pages\EditDeportations::route('/{record}/edit'),
+            'index' => Pages\ListDeportationAccounts::route('/'),
+          //  'create' => Pages\CreateDeportationAccounts::route('/create'),
+          //  'edit' => Pages\EditDeportationAccounts::route('/{record}/edit'),
         ];
     }
 }

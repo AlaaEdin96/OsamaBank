@@ -30,7 +30,7 @@ class BankCardsResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationGroup = 'Work';
+    protected static ?string $navigationGroup = 'العمل';
     protected static ?string $pluralModelLabel = "البطاقات البنكية";
 
   

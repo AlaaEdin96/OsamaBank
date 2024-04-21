@@ -11,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('deportations', function (Blueprint $table) {
+        Schema::create('deportation_accounts', function (Blueprint $table) {
             $table->id();
             $table->foreignId("creted_by_user_id")->constrained("users")->cascadeOnDelete();
             $table->foreignId("deportations_to")->nullable()->constrained("users")->cascadeOnDelete();
             $table->boolean("confirmation")->default(false);
             $table->foreignId("confirm_from")->nullable()->constrained("users")->cascadeOnDelete();
-            $table->foreignId("bank_card_id")->constrained("bank_card")->cascadeOnDelete();
-            $table->string('note')->nullable();
-            $table->string('password');
-
+            $table->foreignId("bank_account_id")->constrained("bank_account")->cascadeOnDelete();
+            $table->string('note');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('deportations');
+        Schema::dropIfExists('deportation_accounts');
     }
 };
