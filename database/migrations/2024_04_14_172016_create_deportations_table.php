@@ -19,8 +19,6 @@ return new class extends Migration
             $table->foreignId("confirm_from")->nullable()->constrained("users")->cascadeOnDelete();
             $table->foreignId("bank_card_id")->constrained("bank_card")->cascadeOnDelete();
             $table->string('note')->nullable();
-            $table->string('password');
-
             $table->timestamps();
         });
     }

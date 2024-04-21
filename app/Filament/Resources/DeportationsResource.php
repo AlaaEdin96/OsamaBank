@@ -59,7 +59,7 @@ class DeportationsResource extends Resource
             TextColumn::make('deportationsTo.name')->label('المستقبل'),
             TextColumn::make('confirmFrom.name')->label('نأكيد من'),
             TextColumn::make('bankCard.numder')->searchable()->label('رقم البطاقة'),  
-            TextColumn::make('password'),             
+            IconColumn::make('bankCard.password')->label('تم'),
             TextColumn::make('note')->label('الوصف'),             
             IconColumn::make('confirmation')->label('تم')
             ->icon(fn (string $state): string => match ($state) {
