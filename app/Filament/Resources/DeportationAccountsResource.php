@@ -38,12 +38,12 @@ class DeportationAccountsResource extends Resource
         return $form
         ->schema([
                 Section::make('بيانات الحساب المصرفي')
-            ->description('يرجى كتابة كل البيانات المطلوبة لأنشاء حساب مصرفي مع تحميل صورة الرقم الوطنى وصورة الباسبور')   
+            //->description('يرجى كتابة كل البيانات المطلوبة لأنشاء حساب مصرفي مع تحميل صورة الرقم الوطنى وصورة الباسبور')   
             ->schema([
                 Select::make('deportations_to')->required()->label('ترحيل الي')
                 ->options(User::all()->pluck('name', 'id'))
                 ->searchable(), 
-                 Select::make('bank_account_id')->required()->label('رقم البطاقة')
+                 Select::make('bank_account_id')->required()->label('الحساب')
                 ->options(BankAccount::all()->pluck('name', 'id'))
                 ->searchable(),
                  
