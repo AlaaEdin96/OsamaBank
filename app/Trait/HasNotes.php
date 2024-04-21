@@ -3,6 +3,7 @@
 namespace App\Trait;
 
 use App\Contracts\IsNote;
+use App\Models\Note;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,7 @@ trait HasNotes
     /** @return MorphMany<IsNote> */
     public function notes(): MorphMany
     {
-        return $this->morphMany(config('notes.model'), 'notable');
+        return $this->morphMany(Note::class, 'notable');
     }
 
     public function addNote(string $content, Model $user = null, IsNote $parent = null): IsNote

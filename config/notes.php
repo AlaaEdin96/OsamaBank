@@ -7,6 +7,6 @@ return [
     'model' => Note::class,
 
     /** @phpstan-ignore-next-line */
-    'user' => \App\Models\User::class,
+   // 'user' => \App\Models\User::class,
 
 ];
