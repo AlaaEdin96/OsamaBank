@@ -107,10 +107,10 @@ Section::make('ملفات')->schema([
     ->maxFiles(5)
     ->resize(50),
 ]),
-Section::make('ملاحظات')->schema([
-    Textarea::make('notes'),
+// Section::make('ملاحظات')->schema([
+//     Textarea::make('notes'),
 
- ]),
+//  ]),
 
 ])
 
