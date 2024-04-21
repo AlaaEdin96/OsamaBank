@@ -104,7 +104,7 @@ class DeportationsResource extends Resource
     {
         return [
             'index' => Pages\ListDeportations::route('/'),
-            'create' => Pages\CreateDeportations::route('/create'),
+            //'create' => Pages\CreateDeportations::route('/create'),
           //  'edit' => Pages\EditDeportations::route('/{record}/edit'),
         ];
     }
