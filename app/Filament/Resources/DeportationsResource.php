@@ -40,8 +40,6 @@ class DeportationsResource extends Resource
                  Select::make('bank_card_id')->required()->label('رقم البطاقة')
                 ->options(BankCard::all()->pluck('numder', 'id'))
                 ->searchable(),
-                TextInput::make('password')->required()->name('كلمة السر'),
-
                 TextInput::make('note')->required()->name('ملاحظة'),
 
             ])->columns(3),

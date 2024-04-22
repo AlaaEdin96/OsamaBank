@@ -16,7 +16,6 @@ class Deportations extends Model
         'confirmation',
         'confirm_from',
         'note',
-        'password',
         'bank_card_id',
         'creted_by_user_id'
      ];
