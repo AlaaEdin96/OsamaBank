@@ -77,7 +77,7 @@ class BankAccountResource extends Resource
             TextInput::make('account_number')->name('رقم_الحساب'),
             TextInput::make('iban_number')->name('الايبان'),
 
-            Select::make('bank_id')->label('البنك')
+            Select::make('bank_id')->label('البنك')->required()
             ->options(Bank::all()->pluck('name', 'id'))
              ->searchable(),
  
