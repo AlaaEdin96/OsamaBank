@@ -131,6 +131,7 @@ Section::make('ملفات')->schema([
                 TextColumn::make('id')->label('#IDC'),
                 TextColumn::make('name')->searchable()->label('الاسم'),
                 TextColumn::make('statuses')->label('الحالة الجديدة')->badge(),
+                TextColumn::make('bank.name')->searchable()->label('البنك')->searchable(),
 
                 SpatieMediaLibraryImageColumn::make('avatar')->collection('avatars')->label('الصور')
 
