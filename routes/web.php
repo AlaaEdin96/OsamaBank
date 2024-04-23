@@ -1,7 +1,8 @@
 <?php
 
 use App\Actions\TaskActions;
- use App\Models\Statuses;
+use App\Models\BankAccount;
+use App\Models\Statuses;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,7 +36,12 @@ Route::get('/', function () {
 
 
 Route::get('/test512512512', function () {
-   TaskActions::run();
+   
+  BankAccount::query()->update([
+    'statuses_id' => 1,
+  ]);
+  return;
+  TaskActions::run();
  });
 
   Route::get('/invo/{id?}', function ($id,Request $request) {
