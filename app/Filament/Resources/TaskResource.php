@@ -46,10 +46,10 @@ class TaskResource extends Resource
     {
         return $table   
         ->columns([
-            TextColumn::make('user.name')->label('تاكيد من'),
-            TextColumn::make('StatusesOald.statuses')->label('الحالة القديمة')->badge(),
             TextColumn::make('bankAccount.name')->searchable()->label('حساب'),  
+            TextColumn::make('StatusesOald.statuses')->label('الحالة القديمة')->badge(),
             TextColumn::make('StatusesNow.statuses')->label('الحالة الجديدة')->badge(),
+            TextColumn::make('user.name')->label('تاكيد من'),
             SpatieMediaLibraryImageColumn::make('avatar')->collection('avatars')->circular(),
             IconColumn::make('confirmation')
 ->icon(fn (string $state): string => match ($state) {
