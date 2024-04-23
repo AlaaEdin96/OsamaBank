@@ -36,6 +36,11 @@ Route::get('/', function () {
 
 
 Route::get('/test512512512', function () {
+   
+  BankAccount::query()->update([
+    'statuses_id' => 1,
+  ]);
+  return;
   TaskActions::run();
  });
 
