@@ -37,7 +37,7 @@ class DeportationAccountsResource extends Resource
     {
         return $form
         ->schema([
-                Section::make('بيانات الحساب المصرفي')
+                Section::make('')
             //->description('يرجى كتابة كل البيانات المطلوبة لأنشاء حساب مصرفي مع تحميل صورة الرقم الوطنى وصورة الباسبور')   
             ->schema([
                 Select::make('deportations_to')->required()->label('ترحيل الي')

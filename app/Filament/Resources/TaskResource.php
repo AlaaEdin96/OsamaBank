@@ -6,6 +6,7 @@ use App\Filament\Resources\TaskResource\Pages;
 use App\Filament\Resources\TaskResource\RelationManagers;
 use App\Models\BankAccount;
 use App\Models\Deportations;
+use App\Models\Statuses;
 use App\Models\Task;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
@@ -37,15 +38,7 @@ class TaskResource extends Resource
              ->options(BankAccount::all()->pluck('name', 'id'))
              ->searchable(),
              Select::make('statuses_old')->required()->label('الحالة')
-             ->options([
-                 'تم التسجيل' => 'تم التسجيل',
-                 'مطابق' => 'مطابق',
-                 'توكيل' => 'توكيل',
-                 'غير مطابق' => 'غر مطابق',
-                 'قيد التنفيد' => 'قيد التنفيد',
-                 'تم التنفيد' => 'تم التنفيد',
-                 
-             ])->columnSpanFull()
+             ->options(Statuses::all()->pluck('statuses', 'id'))->columnSpanFull()
         ]);
     }
 
@@ -131,8 +124,8 @@ class TaskResource extends Resource
     {
         return [
             'index' => Pages\ListTasks::route('/'),
-            'create' => Pages\CreateTask::route('/create'),
-            'edit' => Pages\EditTask::route('/{record}/edit'),
+       //     'create' => Pages\CreateTask::route('/create'),
+     //       'edit' => Pages\EditTask::route('/{record}/edit'),
         ];
     }
 

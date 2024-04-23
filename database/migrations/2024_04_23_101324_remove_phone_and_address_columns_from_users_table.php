@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('bank_account', function (Blueprint $table) {
-            $table->string('statuses')->nullable();
+            $table->dropColumn(['expires','statuses','note']);
+            $table->foreignId("statuses_id")->nullable()->constrained("statuses")->cascadeOnDelete();
         });
     }
 
@@ -21,7 +22,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('bank_account', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
         });
     }

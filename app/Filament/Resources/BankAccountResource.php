@@ -66,7 +66,6 @@ class BankAccountResource extends Resource
             TextInput::make('phone')->required()->name('الهاتف'),
             TextInput::make('numder_id')->required()->name('الرقم_الوطنى'),
             TextInput::make('id_card')->required()->name('رقم_جواز_السفر'),           
-            
            Select::make('client_id')->required()->label('العميل')
           ->options(Client::all()->pluck('name', 'id'))
           ->searchable(),
@@ -130,9 +129,8 @@ Section::make('ملفات')->schema([
             ->columns([
                 TextColumn::make('id')->label('#IDC'),
                 TextColumn::make('name')->searchable()->label('الاسم'),
-                TextColumn::make('statuses')->label('الحالة الجديدة')->badge(),
+                TextColumn::make('statuses.statuses')->label('الحالة الجديدة')->badge(),
                 TextColumn::make('bank.name')->searchable()->label('البنك')->searchable(),
-
                 SpatieMediaLibraryImageColumn::make('avatar')->collection('avatars')->label('الصور')
 
             ])->defaultSort('created_at', 'desc')

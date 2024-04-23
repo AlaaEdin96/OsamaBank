@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('statuses', function (Blueprint $table) {
             $table->id();
             $table->foreignId("creted_by_user_id")->constrained("users")->cascadeOnDelete();
-            $table->foreignId("bank_account_id")->constrained("bank_account")->cascadeOnDelete();
-            $table->string('statuses');
+             $table->string('statuses');
             $table->timestamps();
         });
     }

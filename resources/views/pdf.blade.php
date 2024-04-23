@@ -102,6 +102,11 @@ body{
 		</style>
 	</head>
 
+
+@php
+	$account= App\Models\BankAccount::find($id);
+@endphp
+
 	<body>
 		<div class="invoice-box">
 			<table cellpadding="0" cellspacing="0">
@@ -150,42 +155,36 @@ body{
 				</tr>
 
 				<tr class="item">
-					<td>{{$date["name" ]}}</td>
+					<td>{{$account->name}}</td>
 
 					<td>الاسم</td>
 				</tr>
 
 				<tr class="item">
 
-					<td>{{$date["phone_contact" ]}}</td>
+					<td>{{$account->phone_contact}}</td>
 					<td>هاتف التواصل</td>
 
 				</tr>
-
-				<tr class="item">
-					<td>{{$date["phone" ]}}</td>
-					<td>عنوان السكن</td>
+ 				<tr class="item">
+					<td>{{ $account->bank->name }}</td>
+					<td>المصرف </td>
 
 				</tr>
 
 				<tr class="item">
-					<td>{{$date["phone" ]}}</td>
+					<td>{{$account->phone}}</td>
 					<td>رقم الهاتف المربوط بالمنصه </td>
 				</tr>
 
 				<tr class="item">
-					<td>{{$date["numder_id"]}}</td>
+					<td>{{$account->numder_id}}</td>
 					<td>الرقم الوطني </td>
 				</tr>
 
 				<tr class="item">
 					<td>{{$date["id_card"]}}</td>
 					<td>الجواز</td>
-				</tr>
-
-				<tr class="item">
-					<td>{{$date["statuses" ]}}</td>
-					<td>حالة الحساب عند الشراء</td>
 				</tr>
 			</table>
 		</div>

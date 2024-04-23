@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('numder_id');//الرقم الوطنى
             $table->string('id_card');// رقم الجواز
             $table->string('phone');
-            $table->string('note')->nullable();
             $table->foreignId("bank_id")->constrained("bank")->cascadeOnDelete();
             $table->foreignId("client_id")->constrained("client")->cascadeOnDelete();
             $table->foreignId("creted_by_user_id")->constrained("users")->cascadeOnDelete();
@@ -25,8 +24,7 @@ return new class extends Migration
             $table->string('account_number')->nullable();
             $table->string('iban_number')->nullable();
             $table->string('phone_contact')->nullable();
-            $table->date('expires')->nullable();
-            $table->timestamps();
+             $table->timestamps();
         });
     }
 

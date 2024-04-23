@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId("confirmation_by_user_id")->nullable()->constrained("users")->cascadeOnDelete();
             $table->foreignId("bank_account_id")->constrained("bank_account")->cascadeOnDelete();
-            $table->string('statuses_old')->nullable();
-            $table->string('statuses_now')->nullable();
+            $table->foreignId("statuses_old")->nullable()->constrained("statuses")->cascadeOnDelete();
+            $table->foreignId("statuses_now")->nullable()->constrained("statuses")->cascadeOnDelete();
             $table->boolean("confirmation")->default(false);
             $table->timestamps();
         });
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::drop('tasks');
     }
 };

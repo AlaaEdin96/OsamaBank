@@ -1,6 +1,7 @@
 <?php
 
-use App\Models\BankAccount;
+use App\Actions\TaskActions;
+ use App\Models\Statuses;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,34 +35,15 @@ Route::get('/', function () {
 
 
 Route::get('/test512512512', function () {
-         $Account=BankAccount::where('statuses','!=','تم التنفيد')->get();
-        
-       // dd($Account[0]);
-         if ($Account->count()>0) {
-           
-            foreach ($Account as $index) {
-               $a= Task::where('bank_account_id',$index->id)->where('confirmation',0)->first();
-           
-             if (!is_null($a)) {
-                return;
-             }
-               
-                Task::create([
-                    'statuses_old'=>$index->statuses,
-                    'bank_account_id'=>$index->id,
-                    'confirmation'=>0
-                ]);
-            }
-        } else {
-            return "noting";
-        }
-        
-        
+  
+   TaskActions::run();
  });
-  Route::get('/invo/{id?}', function ($id,Request $request) {
-     $pdf = app("laravel-mpdf")->loadView('pdf',['id'=>$id,'date'=>$request->input(),]);
-    return $pdf->stream('document.pdf');
 
-    return view('pdf',);
+  Route::get('/invo/{id?}', function ($id,Request $request) {
+ //  dd($request->input());
+  //  return $request->input();
+      $pdf = app("laravel-mpdf")->loadView('pdf',['id'=>$id,'date'=>$request->input(),]);
+     return $pdf->stream('document.pdf');
+     return view('pdf',);
 })->name('pdf');
 

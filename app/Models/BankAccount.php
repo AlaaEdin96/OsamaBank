@@ -16,7 +16,7 @@ class BankAccount extends Model implements HasMedia
     protected  $table = 'bank_account';
     
     protected $attributes = [
-        'statuses' => 'تم التسجيل',
+        'statuses_id' => 1 //Statuses::first()->id,
      ];
 
     protected $fillable = [
@@ -24,16 +24,14 @@ class BankAccount extends Model implements HasMedia
         'numder_id',
         'phone',
         'id_card',
-        'note',
         'bank_id',
         'client_id',
         'creted_by_user_id',
         'email',
         'account_number',
         'iban_number',
-        'expires',
         'phone_contact'
-        ,'statuses'
+        ,'statuses_id'
      ];
    
      public function cards()
@@ -48,7 +46,7 @@ class BankAccount extends Model implements HasMedia
 
      public function statuses()
      {
-         return $this->hasMany(Status::class,'bank_account_id');
+         return $this->belongsTo(Statuses::class,'statuses_id');
      }
 
      public function bank()

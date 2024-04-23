@@ -13,7 +13,7 @@ class ListTasks extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make()->label("انشاء جديد"),
+     //       Actions\CreateAction::make()->label("انشاء جديد"),
         ];
     }
 }
