@@ -40,13 +40,15 @@ class StatusesResource extends Resource
                 TextColumn::make('statuses')->label('الحالة'),
                 TextColumn::make('user.name')->label('المدخل'),
                 TextColumn::make('created_at'),
-            ])->defaultSort('created_at', 'desc')
+            ])
+            //->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
+     
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                   //  Tables\Actions\DeleteBulkAction::make(),

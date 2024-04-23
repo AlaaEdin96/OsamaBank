@@ -30,4 +30,15 @@ class Task extends Model implements HasMedia
          return $this->belongsTo(BankAccount::class);
      }
 
+     public function StatusesOald()
+     {
+         return $this->belongsTo(Statuses::class,'statuses_old');
+     }
+
+
+     public function StatusesNow()
+     {
+         return $this->belongsTo(Statuses::class,'statuses_now');
+     }
+
 }

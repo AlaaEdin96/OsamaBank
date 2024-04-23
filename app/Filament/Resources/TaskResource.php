@@ -47,9 +47,9 @@ class TaskResource extends Resource
         return $table   
         ->columns([
             TextColumn::make('user.name')->label('تاكيد من'),
-            TextColumn::make('statuses_old')->label('الحالة القديمة')->badge(),
+            TextColumn::make('StatusesOald.statuses')->label('الحالة القديمة')->badge(),
             TextColumn::make('bankAccount.name')->searchable()->label('حساب'),  
-            TextColumn::make('statuses_now')->label('الحالة الجديدة')->badge(),
+            TextColumn::make('StatusesNow.statuses')->label('الحالة الجديدة')->badge(),
             SpatieMediaLibraryImageColumn::make('avatar')->collection('avatars')->circular(),
             IconColumn::make('confirmation')
 ->icon(fn (string $state): string => match ($state) {
@@ -82,24 +82,34 @@ class TaskResource extends Resource
     ->resize(50),
                 
              Select::make('statuses_now')->required()->label('الحالة')
-             ->options([
-                 'تم التسجيل' => 'تم التسجيل',
-                 'مطابق' => 'مطابق',
-                 'توكيل' => 'توكيل',
-                 'غير مطابق' => 'غر مطابق',
-                 'قيد التنفيد' => 'قيد التنفيد',
-                 'تم التنفيد' => 'تم التنفيد',
-                 'الرقم الوطني غير مربوط' => 'الرقم الوطني غير مربوط',
-                 'خطاء' => 'خطاء',
+             ->options(
+                function (Task $st){
+                    // dd(Statuses::where('id','>',$st->statuses_old)->get());
+                   return   Statuses::where('id','>',$st->statuses_old)->get()
+                      ->pluck('statuses', 'id');
+                     
+                }
+                )    ->searchable()
+                // ->createOptionForm([
+                //     Forms\Components\TextInput::make('name')
+                //         ->required(),
+                //     Forms\Components\TextInput::make('email')
+                //         ->required()
+                //         ->email(),
+                // ]),
 
-                 
-             ])])->action(function( Task $st,array $data){
+
+                //->native(false)
+
+
+                ])
+                ->action(function( Task $st,array $data){
                 $st->update([
                     'confirmation'=>true,
                     'statuses_now'=>$data['statuses_now'],
                     'confirmation_by_user_id'=>Auth::id()
                 ]); 
-              BankAccount::find($st->bank_account_id)->update(['statuses'=>$data['statuses_now'],]); 
+              BankAccount::find($st->bank_account_id)->update(['statuses_id'=>$data['statuses_now'],]); 
             
         })
             ->disabled(fn (Task $st)=> $st->confirmation) ,             
