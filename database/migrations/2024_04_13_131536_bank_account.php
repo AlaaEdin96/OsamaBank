@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('account_number')->nullable();
             $table->string('iban_number')->nullable();
             $table->string('phone_contact')->nullable();
+            $table->foreignId("statuses_id")->nullable()->constrained("statuses")->cascadeOnDelete();
              $table->timestamps();
         });
     }
