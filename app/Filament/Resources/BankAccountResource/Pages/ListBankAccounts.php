@@ -24,7 +24,8 @@ class ListBankAccounts extends ListRecords
 
     public function getTabs(): array
 {
-     $tabs['all'] = Tab::make('الكل');
+     $tabs['all'] = Tab::
+     make('الكل')->badge($this->getModel()::count());
      $tabs['to_day'] = Tab::make('اليوم')
      ->modifyQueryUsing(fn (Builder $query) => $query->whereDate('created_at', now()->today()));
      ;
