@@ -24,10 +24,7 @@ Route::get('/', function () {
  Route::get('/bb', function () {
       $status=Statuses::all();
 
-      BankAccount::where('statuses',null)->first()
-          ->update([
-              'statuses'=>null,
-          ]);
+      BankAccount::update(['statuses'=>null]);
 return;
 
       foreach ($status as $value) {
