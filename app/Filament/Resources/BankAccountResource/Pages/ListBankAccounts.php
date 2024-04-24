@@ -25,6 +25,9 @@ class ListBankAccounts extends ListRecords
     public function getTabs(): array
 {
      $tabs['all'] = Tab::make('الكل');
+     $tabs['to_day'] = Tab::make('اليوم')
+     ->modifyQueryUsing(fn (Builder $query) => $query->whereDate('created_at', now()->today()));
+     ;
      $statuses=Statuses::all();
      foreach ($statuses as $key => $value) {
         $tabs[$value->statuses] =Tab::make($value->statuses)
