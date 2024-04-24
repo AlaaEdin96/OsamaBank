@@ -24,12 +24,12 @@ Route::get('/', function () {
  Route::get('/bb', function () {
       $status=Statuses::all();
 
-      BankAccount::query()->update(['statuses'=>null]);
+      BankAccount::query()->update(['statuses_id'=>null]);
 return;
 
       foreach ($status as $value) {
          
-          BankAccount::where('statuses',null)->first()
+          BankAccount::where('statuses_id',null)->first()
           ->update([
               'statuses'=>'تم التسجيل',
           ]);
