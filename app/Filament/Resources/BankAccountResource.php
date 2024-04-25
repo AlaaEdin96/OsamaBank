@@ -105,7 +105,7 @@ Section::make('ملفات')->schema([
    //->maxSize(680)
     ->openable()
     ->uploadingMessage('Uploading attachment...')
-    ->maxFiles(5)
+    ->maxFiles(10)
     ->resize(50),
 ]),
 // Section::make('ملاحظات')->schema([
@@ -129,7 +129,7 @@ Section::make('ملفات')->schema([
     {
         return $table
             ->columns([
-                TextColumn::make('id')->label('#IDC'),
+                TextColumn::make('id')->label('#IDC')->searchable(),
                 TextColumn::make('name')->searchable()->label('الاسم'),
                 TextColumn::make('statuses.statuses')->label('الحالة الجديدة')->badge(),
                 TextColumn::make('bank.name')->searchable()->label('البنك')->searchable(),

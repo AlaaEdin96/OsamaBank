@@ -85,7 +85,7 @@ class TaskResource extends Resource
              ->options(
                 function (Task $st){
                     // dd(Statuses::where('id','>',$st->statuses_old)->get());
-                   return   Statuses::where('id','>',$st->statuses_old)->get()
+                   return   Statuses::where('id','>=',$st->statuses_old)->get()
                       ->pluck('statuses', 'id');
                      
                 }
