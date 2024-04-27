@@ -7,6 +7,7 @@ use App\Filament\Resources\BankAccountResource\RelationManagers;
 use App\Models\Bank;
 use App\Models\BankAccount;
 use App\Models\Client;
+use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Builder\Block;
@@ -61,9 +62,10 @@ class BankAccountResource extends Resource
     
         ->schema([
             TextInput::make('id')->label('#ID')
-            ->readonly() ,
-            TextInput::make('user.name')->label('#المدخل')
-            ->readonly(),
+            ->readonly()->disabled() ,
+            Select::make('creted_by_user_id')->required()->label('المدخل')
+            ->options(User::all()->pluck('name', 'id'))
+            ->disabled(),
             TextInput::make('name')->required()->name('الاسم')->columnSpanFull(),
             TextInput::make('phone')->required()->name('الهاتف'),
             TextInput::make('numder_id')->required()->name('الرقم_الوطنى'),
