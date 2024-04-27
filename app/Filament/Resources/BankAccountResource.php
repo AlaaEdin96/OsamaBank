@@ -62,7 +62,7 @@ class BankAccountResource extends Resource
         ->schema([
             TextInput::make('id')->label('#ID')
             ->readonly() ,
-            TextInput::make('user.id')->label('#المدخل')
+            TextInput::make('user.name')->label('#المدخل')
             ->readonly(),
             TextInput::make('name')->required()->name('الاسم')->columnSpanFull(),
             TextInput::make('phone')->required()->name('الهاتف'),

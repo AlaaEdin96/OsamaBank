@@ -65,7 +65,10 @@ class TaskResource extends Resource
             ->filters([
             ])
             
-            ->actions([Tables\Actions\Action::make('Confirm')
+            ->actions([
+                Tables\Actions\Action::make('view')
+               -> url((fn (Task $st) => BankAccountResource::getUrl('edit', ['record' =>$st->id])))->openUrlInNewTab(),
+                Tables\Actions\Action::make('Confirm')
             ->form([
                 SpatieMediaLibraryFileUpload::make('attachment')
     ->image()
@@ -118,7 +121,9 @@ class TaskResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+        
+            ;
     }
 
 
