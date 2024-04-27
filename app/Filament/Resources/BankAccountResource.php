@@ -97,7 +97,8 @@ Group::make([
 ])->schema([
 Section::make('ملفات')->schema([
     SpatieMediaLibraryFileUpload::make('attachment')
-    ->image()
+   // ->image()
+   
     ->multiple()
     ->collection('avatars')
     ->optimize('webp')
