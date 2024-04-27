@@ -67,7 +67,7 @@ class TaskResource extends Resource
             
             ->actions([
                 Tables\Actions\Action::make('view')
-               -> url((fn (Task $st) => BankAccountResource::getUrl('edit', ['record' =>$st->id])))->openUrlInNewTab(),
+               -> url((fn (Task $st) => BankAccountResource::getUrl('edit', ['record' =>$st->bank_account_id])))->openUrlInNewTab(),
                 Tables\Actions\Action::make('Confirm')
             ->form([
                 SpatieMediaLibraryFileUpload::make('attachment')
