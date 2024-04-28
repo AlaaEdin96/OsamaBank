@@ -139,8 +139,8 @@ Section::make('ملفات')->schema([
                 TextColumn::make('bank.name')->searchable()->label('البنك')->searchable(),
                 SpatieMediaLibraryImageColumn::make('avatar')->collection('avatars')->label('الصور'),
                 TextColumn::make('user.name')->label('المدخل'),
-
             ])->defaultSort('created_at', 'desc')
+            
             ->filters([
                 Filter::make('is_featured')
                 ->label('Featured'),
